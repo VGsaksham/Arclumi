@@ -1,0 +1,94 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  z-index: 1000;
+  transition: background-color 0.4s ease, padding 0.4s ease;
+  background-color: transparent;
+}
+
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1rem 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-logo {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.logo-text {
+  font-size: 2.2rem;
+  letter-spacing: -1.5px;
+  text-transform: lowercase;
+  display: flex;
+  align-items: baseline;
+  color: #fff;
+}
+
+.logo-light {
+  color: inherit;
+  font-weight: 700;
+}
+
+.logo-book {
+  color: inherit;
+  font-weight: 200;
+}
+
+.logo-subtext {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 3px;
+  margin-top: 5px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #fff;
+  transition: color 0.3s;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--accent-color);
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
