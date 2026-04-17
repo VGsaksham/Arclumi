@@ -32,22 +32,21 @@
 }
 
 .logo-text {
-  font-size: 2.2rem;
-  letter-spacing: -1.5px;
-  text-transform: lowercase;
+  font-size: 1.6rem;
+  letter-spacing: 14px;
+  text-transform: uppercase;
   display: flex;
   align-items: baseline;
   color: #fff;
+  font-weight: 300;
+  margin-right: -14px; /* to offset the last letter's spacing */
 }
 
-.logo-light {
+.logo-light, .logo-book {
   color: inherit;
-  font-weight: 700;
-}
-
-.logo-book {
-  color: inherit;
-  font-weight: 200;
+  font-weight: inherit;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
 }
 
 .logo-subtext {

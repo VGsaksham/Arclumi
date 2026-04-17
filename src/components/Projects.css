@@ -27,25 +27,44 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 35px;
 }
 
 .project-filters li {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
   cursor: pointer;
-  padding: 5px 15px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
+  padding: 5px 0;
+  color: #888;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.project-filters li::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background-color: #000;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
 }
 
 .project-filters li.active {
-  background-color: var(--accent-color);
   color: #000;
+  font-weight: 400;
+}
+
+.project-filters li.active::after {
+  width: 100%;
 }
 
 .project-filters li:not(.active):hover {
-  color: var(--accent-color);
+  color: #000;
 }
 
 .projects-grid {
