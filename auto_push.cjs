@@ -27,8 +27,14 @@ function autoPush() {
     return;
   }
 
+  console.log('Pulling latest changes from remote...');
+  runCommand('git pull --rebase origin main');
+
   console.log('Pushing to remote...');
-  runCommand('git push');
+  if (!runCommand('git push')) {
+      console.log('Initial push failed, attempting to set upstream branch...');
+      runCommand('git push -u origin HEAD');
+  }
   console.log('Done!');
 }
 
