@@ -12,11 +12,13 @@
 }
 
 .navbar.scrolled {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly more transparent for better blur visibility */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 1rem 4rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transform: translateZ(0); /* Force hardware acceleration */
+  will-change: backdrop-filter;
 }
 
 .navbar-logo {
