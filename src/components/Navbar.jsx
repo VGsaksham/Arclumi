@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+
+const productCategories = ['indoor', 'facade', 'landscape', 'indoor decorative', 'outdoor decorative', 'speciality products'];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,19 +18,35 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-logo">
-        <div className="logo-text">
-          <span className="logo-light">arc</span>
-          <span className="logo-book">lumi</span>
-        </div>
-        <div className="logo-subtext">experiments with light</div>
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div className="logo-text">
+            <span className="logo-light">arc</span>
+            <span className="logo-book">lumi</span>
+          </div>
+          <div className="logo-subtext">experiments with light</div>
+        </Link>
       </div>
       <ul className="navbar-links">
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#services">services</a></li>
-        <li><a href="#about">about</a></li>
-        <li><a href="#news">news & events</a></li>
-        <li><a href="#blogs">blogs</a></li>
-        <li><a href="#contact">contact</a></li>
+        <li><Link to="/#projects">projects</Link></li>
+        <li className="dropdown-container">
+          <Link to="/products" className="dropdown-trigger">products</Link>
+          <div className="dropdown-menu">
+            {productCategories.map(cat => (
+              <Link 
+                key={cat} 
+                to={`/products?category=${encodeURIComponent(cat)}`} 
+                state={{ trigger: Date.now() }}
+                className="dropdown-item"
+              >
+                {cat}
+              </Link>
+            ))}
+          </div>
+        </li>
+        <li><Link to="/#services">services</Link></li>
+        <li><Link to="/#news">news</Link></li>
+        <li><Link to="/#about">about</Link></li>
+        <li><Link to="/#contact">contacts</Link></li>
       </ul>
     </nav>
   );

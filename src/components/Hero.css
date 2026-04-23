@@ -129,14 +129,20 @@
   position: absolute;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
   width: 20px;
   height: 20px;
   border-right: 3px solid #fff;
   border-bottom: 3px solid #fff;
-  transform: rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
   z-index: 3;
   cursor: pointer;
+  animation: scrollPulse 2s infinite ease-in-out;
+}
+
+@keyframes scrollPulse {
+  0% { transform: translateX(-50%) rotate(45deg) scale(1); }
+  50% { transform: translateX(-50%) rotate(45deg) scale(0.8); }
+  100% { transform: translateX(-50%) rotate(45deg) scale(1); }
 }
 
 .hero-nav-arrow {
