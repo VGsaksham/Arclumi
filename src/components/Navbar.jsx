@@ -16,7 +16,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav 
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      style={{
+        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px) saturate(100%)',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px) saturate(100%)',
+        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.6)' : 'transparent'
+      }}
+    >
       <div className="navbar-logo">
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="logo-text">
