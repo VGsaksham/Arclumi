@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import ProductsPage from './components/ProductsPage';
+import Services from './components/Services';
 
 import { customSmoothScroll } from './utils';
 
@@ -35,6 +36,8 @@ const Home = () => (
   </>
 );
 
+
+
 function App() {
   return (
     <>
@@ -43,6 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
       <Footer />
     </>

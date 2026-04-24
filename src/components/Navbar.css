@@ -69,29 +69,13 @@
   font-size: 0.9rem;
   font-weight: 400;
   color: #fff;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
   position: relative;
   padding-bottom: 5px;
 }
 
-.navbar-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 50%;
-  background-color: var(--accent-color);
-  transition: all 0.3s ease;
-}
-
 .navbar-links a:hover {
-  color: var(--accent-color);
-}
-
-.navbar-links a:hover::after {
-  width: 100%;
-  left: 0;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 /* Dropdown Menu Styles */
