@@ -1,112 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { customSmoothScroll } from '../utils';
+import { client, urlFor } from '../lib/sanity';
 import './ProductsPage.css';
-
-const cataloguesData = [
-  { 
-    id: 1, 
-    images: ['/prod_chandelier.png', '/prod_pendant.png'], 
-    title: 'Architectural Downlights', 
-    desc: 'Precision engineered recessed and surface mounted downlights.', 
-    category: 'indoor',
-    products: [
-      { id: 101, name: 'Core Downlight 12W', img: ['/prod_linear.png', '/prod_chandelier.png'], specs: '12W / 3000K / 45° Beam' },
-      { id: 102, name: 'Pro Downlight 24W', img: ['/prod_chandelier.png', '/prod_pendant.png'], specs: '24W / 4000K / 60° Beam' },
-      { id: 103, name: 'Mini Adjustable 8W', img: ['/prod_pendant.png', '/prod_linear.png'], specs: '8W / 2700K / Adjustable' }
-    ]
-  },
-  { 
-    id: 2, 
-    images: ['/prod_linear.png', '/prod_chandelier.png'], 
-    title: 'Linear Systems', 
-    desc: 'Continuous and modular linear lighting solutions.', 
-    category: 'indoor',
-    products: [
-      { id: 201, name: 'Linea Surface', img: ['/prod_linear.png', '/prod_facade.png'], specs: 'Custom Length / Diffused' },
-      { id: 202, name: 'Linea Recessed', img: ['/prod_chandelier.png', '/prod_linear.png'], specs: 'Custom Length / UGR<19' }
-    ]
-  },
-  { 
-    id: 3, 
-    images: ['/prod_facade.png', '/prod_linear.png'], 
-    title: 'Wall Washers', 
-    desc: 'High-performance asymmetric optics.', 
-    category: 'facade',
-    products: [
-      { id: 301, name: 'Facade Wash Pro', img: ['/prod_facade.png', '/prod_linear.png'], specs: '36W / IP65 / Asymmetric' },
-      { id: 302, name: 'Facade Wash Mini', img: ['/prod_linear.png', '/prod_facade.png'], specs: '18W / IP65 / Asymmetric' }
-    ]
-  },
-  { 
-    id: 4, 
-    images: ['/prod_facade.png', '/prod_linear.png'], 
-    title: 'Media Facades', 
-    desc: 'Dynamic, addressable pixel systems.', 
-    category: 'facade',
-    products: [
-      { id: 401, name: 'Pixel Dot RGBW', img: ['/prod_facade.png', '/prod_pendant.png'], specs: '2W / IP67 / DMX512' },
-      { id: 402, name: 'Pixel Bar RGBW', img: ['/prod_pendant.png', '/prod_facade.png'], specs: '15W/m / IP67 / DMX512' }
-    ]
-  },
-  { 
-    id: 5, 
-    images: ['/prod_pendant.png', '/prod_chandelier.png'], 
-    title: 'Pathway Bollards', 
-    desc: 'Minimalist ground-mounted luminaires.', 
-    category: 'landscape',
-    products: [
-      { id: 501, name: 'Bollard Round 600', img: ['/prod_pendant.png', '/prod_linear.png'], specs: '10W / 600mm Height / IP65' },
-      { id: 502, name: 'Bollard Square 800', img: ['/prod_linear.png', '/prod_chandelier.png'], specs: '14W / 800mm Height / IP65' }
-    ]
-  },
-  { 
-    id: 6, 
-    images: ['/prod_facade.png', '/prod_pendant.png'], 
-    title: 'Tree Uplights', 
-    desc: 'Buried and adjustable spots for canopies.', 
-    category: 'landscape',
-    products: [
-      { id: 601, name: 'Inground Uplight', img: ['/prod_facade.png', '/prod_linear.png'], specs: '12W / Drive-over / IP67' },
-      { id: 602, name: 'Spike Spotlight', img: ['/prod_pendant.png', '/prod_facade.png'], specs: '9W / Adjustable / IP65' }
-    ]
-  },
-  { 
-    id: 7, 
-    images: ['/prod_chandelier.png', '/prod_pendant.png'], 
-    title: 'Indoor Decorative', 
-    desc: 'Bespoke chandeliers and minimalist pendants.', 
-    category: 'indoor',
-    products: [
-      { id: 701, name: 'Halo Suspension', img: ['/prod_chandelier.png', '/prod_pendant.png'], specs: 'Custom Diameter / 3000K' },
-      { id: 702, name: 'Crystal Cascade', img: ['/prod_pendant.png', '/prod_chandelier.png'], specs: 'Custom Drops / 2700K' },
-      { id: 801, name: 'Cylinder Pendant', img: ['/prod_pendant.png', '/prod_chandelier.png'], specs: '8W / 50mm Dia / Matt Black' },
-      { id: 802, name: 'Cone Pendant', img: ['/prod_chandelier.png', '/prod_pendant.png'], specs: '12W / Brass Finish' }
-    ]
-  },
-  { 
-    id: 9, 
-    images: ['/prod_facade.png', '/prod_linear.png'], 
-    title: 'Outdoor Decorative', 
-    desc: 'Weather-proof, architecturally integrated wall lights.', 
-    category: 'landscape',
-    products: [
-      { id: 901, name: 'Cube Sconce Up/Down', img: ['/prod_facade.png', '/prod_pendant.png'], specs: '2x6W / IP65 / Dark Grey' },
-      { id: 902, name: 'Slim Wall Wash', img: ['/prod_pendant.png', '/prod_facade.png'], specs: '15W / IP65 / Silver' }
-    ]
-  },
-  { 
-    id: 10, 
-    images: ['/prod_facade.png', '/prod_pendant.png'], 
-    title: 'Kinetic Installations', 
-    desc: 'Motorized, moving light elements.', 
-    category: 'speciality products',
-    products: [
-      { id: 1001, name: 'Kinetic Sphere', img: ['/prod_facade.png', '/prod_chandelier.png'], specs: 'RGBW / Winch System / DMX' },
-      { id: 1002, name: 'Kinetic Tube', img: ['/prod_chandelier.png', '/prod_facade.png'], specs: 'RGBW / 1m Tube / DMX' }
-    ]
-  }
-];
 
 const categories = ['indoor', 'facade', 'landscape', 'speciality products'];
 
@@ -116,10 +12,30 @@ const ProductsPage = () => {
   const initialCategory = queryParams.get('category') || categories[0];
   
   const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [catalogues, setCatalogues] = useState([]);
   const [filteredCatalogues, setFilteredCatalogues] = useState([]);
   const [selectedCatalogue, setSelectedCatalogue] = useState(null);
+  const [loading, setLoading] = useState(true);
   
   const cataloguesRef = useRef(null);
+
+  useEffect(() => {
+    const fetchCatalogues = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "catalogue"]{
+          ...,
+          products[]->
+        }`);
+        setCatalogues(data);
+      } catch (error) {
+        console.error('Error fetching catalogues:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCatalogues();
+  }, []);
 
   useEffect(() => {
     const newCategory = queryParams.get('category');
@@ -139,9 +55,9 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setFilteredCatalogues(
-      cataloguesData.filter(cat => cat.category === activeCategory)
+      catalogues.filter(cat => cat.category === activeCategory)
     );
-  }, [activeCategory]);
+  }, [activeCategory, catalogues]);
 
   return (
     <div className="products-page">
@@ -172,13 +88,17 @@ const ProductsPage = () => {
         <div className="zoom-boxes-grid">
           {filteredCatalogues.map((catalogue, index) => (
             <div 
-              key={`${activeCategory}-${catalogue.id}`} 
+              key={catalogue._id} 
               className="zoom-box"
               onClick={() => setSelectedCatalogue(catalogue)}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="zoom-box-img-wrapper">
-                <img src={catalogue.images[0]} alt={catalogue.title} className="zoom-box-img" />
+                {catalogue.images?.[0] ? (
+                  <img src={urlFor(catalogue.images[0]).width(600).url()} alt={catalogue.title} className="zoom-box-img" />
+                ) : (
+                  <div className="zoom-box-img placeholder-img"></div>
+                )}
               </div>
               <div className="zoom-box-info">
                 <h3 className="zoom-box-title">{catalogue.title}</h3>
@@ -186,11 +106,12 @@ const ProductsPage = () => {
               </div>
             </div>
           ))}
-          {filteredCatalogues.length === 0 && (
+          {!loading && filteredCatalogues.length === 0 && (
             <div className="no-catalogues">
               <p>No catalogues available in this category yet.</p>
             </div>
           )}
+          {loading && <div className="loading-catalogues">Loading...</div>}
         </div>
       </div>
 
@@ -372,8 +293,8 @@ const ProductsPage = () => {
             </div>
             
             <div className="showroom-grid">
-              {selectedCatalogue.products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {selectedCatalogue.products?.map((product) => (
+                <ProductCard key={product._id} product={product} />
               ))}
             </div>
           </div>
@@ -385,7 +306,7 @@ const ProductsPage = () => {
 
 const ProductCard = ({ product }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const images = Array.isArray(product.img) ? product.img : [product.img];
+  const images = product.images || [];
 
   const nextImg = (e) => {
     e.stopPropagation();
@@ -400,14 +321,18 @@ const ProductCard = ({ product }) => {
   return (
     <div className="showroom-item">
       <div className="showroom-img-box">
-        {images.map((img, idx) => (
-          <img 
-            key={idx}
-            src={img} 
-            alt={product.name} 
-            className={`showroom-img ${idx === currentImg ? 'active' : ''}`} 
-          />
-        ))}
+        {images.length > 0 ? (
+          images.map((img, idx) => (
+            <img 
+              key={img._key || idx}
+              src={urlFor(img).width(800).url()} 
+              alt={product.name} 
+              className={`showroom-img ${idx === currentImg ? 'active' : ''}`} 
+            />
+          ))
+        ) : (
+          <div className="showroom-img active placeholder-img"></div>
+        )}
         
         {images.length > 1 && (
           <>

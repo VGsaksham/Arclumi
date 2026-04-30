@@ -1,16 +1,41 @@
+import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { projectsData } from '../data/projects';
+import { client, urlFor } from '../lib/sanity';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
-  const { id } = useParams();
-  const project = projectsData.find(p => p.id === parseInt(id));
+  const { slug } = useParams();
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await client.fetch(
+          `*[_type == "project" && slug.current == $slug][0]`,
+          { slug }
+        );
+        setProject(data);
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [slug]);
+
+  if (loading) {
+    return <div className="project-detail-loading">Loading project...</div>;
+  }
 
   if (!project) {
     return <Navigate to="/" />;
   }
 
   const isHighQuality = project.imageQuality === 'high';
+  const images = project.images || [];
 
   return (
     <div className={`project-detail-page ${isHighQuality ? 'layout-high' : 'layout-standard'}`}>
@@ -21,39 +46,51 @@ const ProjectDetail = () => {
 
       <div className="project-detail-content">
         <div className="project-detail-gallery">
-          {project.images.map((img, idx) => {
-            const getSlotClass = (index) => {
-              const pattern = index % 6;
-              if (pattern === 0) return 'big-slot';
-              if (pattern === 1) return 'small-slot';
-              if (pattern === 2) return 'small-slot';
-              if (pattern === 3) return 'wide-slot';
-              if (pattern === 4) return 'tall-slot';
-              if (pattern === 5) return 'big-slot';
-              return 'small-slot';
-            };
-            
-            const slotClass = getSlotClass(idx);
-            const isFeaturedSlot = slotClass === 'big-slot';
-            
-            if (isFeaturedSlot && !isHighQuality) {
-              return (
-                <div key={idx} className={`gallery-item ${slotClass} text-slot`}>
-                  <p className="centered-text">
-                    In this space, architectural forms<br/>
-                    interact seamlessly with natural light,<br/>
-                    defining a new spatial narrative.
-                  </p>
-                </div>
-              );
+          {(() => {
+            const elements = [];
+            let imgIndex = 0;
+            let slotIndex = 0;
+
+            while (imgIndex < images.length) {
+              const pattern = slotIndex % 6;
+              let slotClass = 'small-slot';
+              if (pattern === 0) slotClass = 'big-slot';
+              if (pattern === 3) slotClass = 'wide-slot';
+              if (pattern === 4) slotClass = 'tall-slot';
+              if (pattern === 5) slotClass = 'big-slot';
+
+              const isFeaturedSlot = slotClass === 'big-slot';
+
+              if (isFeaturedSlot && !isHighQuality) {
+                // Insert text block for standard quality in big slots
+                elements.push(
+                  <div key={`text-${slotIndex}`} className={`gallery-item ${slotClass} text-slot`}>
+                    <p className="centered-text">
+                      In this space, architectural forms<br/>
+                      interact seamlessly with natural light,<br/>
+                      defining a new spatial narrative.
+                    </p>
+                  </div>
+                );
+              } else {
+                // Insert image
+                const img = images[imgIndex];
+                elements.push(
+                  <div key={`img-${img._key || imgIndex}`} className={`gallery-item ${slotClass}`}>
+                    <img 
+                      src={urlFor(img).width(1200).url()} 
+                      alt={`${project.title} view ${imgIndex + 1}`} 
+                      className="gallery-image" 
+                    />
+                  </div>
+                );
+                imgIndex++; // Only advance image index when an image is placed
+              }
+              slotIndex++;
             }
 
-            return (
-              <div key={idx} className={`gallery-item ${slotClass}`}>
-                <img src={img} alt={`${project.title} view ${idx + 1}`} className="gallery-image" />
-              </div>
-            );
-          })}
+            return elements;
+          })()}
         </div>
       </div>
     </div>
