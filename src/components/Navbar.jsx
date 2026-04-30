@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-const productCategories = ['indoor', 'facade', 'landscape', 'indoor decorative', 'outdoor decorative', 'speciality products'];
+const productCategories = ['indoor', 'facade', 'landscape', 'speciality products'];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav 
+    <nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
       style={{
         backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px) saturate(100%)',
@@ -36,12 +36,12 @@ const Navbar = () => {
       <ul className="navbar-links">
         <li><Link to="/#projects">projects</Link></li>
         <li className="dropdown-container">
-          <Link to="/products" className="dropdown-trigger">products</Link>
+          <span className="dropdown-trigger">products</span>
           <div className="dropdown-menu">
             {productCategories.map(cat => (
-              <Link 
-                key={cat} 
-                to={`/products?category=${encodeURIComponent(cat)}`} 
+              <Link
+                key={cat}
+                to={`/products?category=${encodeURIComponent(cat)}`}
                 state={{ trigger: Date.now() }}
                 className="dropdown-item"
               >
@@ -51,9 +51,8 @@ const Navbar = () => {
           </div>
         </li>
         <li><Link to="/services">services</Link></li>
-        <li><Link to="/#news">news</Link></li>
-        <li><Link to="/#about">about</Link></li>
-        <li><Link to="/#contact">contacts</Link></li>
+        <li><Link to="/about">about</Link></li>
+        <li><Link to="/contact">contact us</Link></li>
       </ul>
     </nav>
   );

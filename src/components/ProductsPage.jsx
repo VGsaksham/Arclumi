@@ -117,7 +117,7 @@ const cataloguesData = [
   }
 ];
 
-const categories = ['indoor', 'facade', 'landscape', 'indoor decorative', 'outdoor decorative', 'speciality products'];
+const categories = ['indoor', 'facade', 'landscape', 'speciality products'];
 
 const ProductsPage = () => {
   const location = useLocation();
