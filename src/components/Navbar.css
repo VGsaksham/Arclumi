@@ -31,14 +31,14 @@
 }
 
 .logo-text {
-  font-size: 1.6rem;
-  letter-spacing: 14px;
+  font-size: 2rem;
+  letter-spacing: 12px;
   text-transform: uppercase;
   display: flex;
   align-items: baseline;
   color: #fff;
   font-weight: 300;
-  margin-right: -14px; /* to offset the last letter's spacing */
+  margin-right: -12px; /* to offset the last letter's spacing */
 }
 
 .logo-light, .logo-book {
@@ -49,10 +49,10 @@
 }
 
 .logo-subtext {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 3px;
-  margin-top: 5px;
+  letter-spacing: 2.4px;
+  margin-top: 8px;
   text-transform: uppercase;
   text-align: left;
 }

@@ -4,13 +4,13 @@ import './Services.css';
 const services = [
   {
     id: '01',
-    title: 'Architectural Lighting Design',
+    title: 'Custom Solutions',
     desc: 'Conceptualizing and calculating light as a structural element to enhance form and function.',
     img: '/prod_linear.png'
   },
   {
     id: '02',
-    title: 'Custom Engineering',
+    title: 'Speciality Works',
     desc: 'Bespoke luminaire design and technical development for unique architectural requirements.',
     img: '/prod_chandelier.png'
   },

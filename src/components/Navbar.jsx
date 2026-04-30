@@ -30,7 +30,7 @@ const Navbar = () => {
             <span className="logo-light">arc</span>
             <span className="logo-book">lumi</span>
           </div>
-          <div className="logo-subtext">experiments with light</div>
+          <div className="logo-subtext">bespoke architectural lighting</div>
         </Link>
       </div>
       <ul className="navbar-links">

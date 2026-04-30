@@ -8,6 +8,7 @@ import ProductsPage from './components/ProductsPage';
 import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
+import ProjectDetail from './components/ProjectDetail';
 
 import { customSmoothScroll } from './utils';
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
       <Footer />
     </>

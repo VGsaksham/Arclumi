@@ -74,21 +74,12 @@ const cataloguesData = [
   { 
     id: 7, 
     images: ['/prod_chandelier.png', '/prod_pendant.png'], 
-    title: 'Bespoke Chandeliers', 
-    desc: 'Customizable suspended sculptures.', 
-    category: 'indoor decorative',
+    title: 'Indoor Decorative', 
+    desc: 'Bespoke chandeliers and minimalist pendants.', 
+    category: 'indoor',
     products: [
       { id: 701, name: 'Halo Suspension', img: ['/prod_chandelier.png', '/prod_pendant.png'], specs: 'Custom Diameter / 3000K' },
-      { id: 702, name: 'Crystal Cascade', img: ['/prod_pendant.png', '/prod_chandelier.png'], specs: 'Custom Drops / 2700K' }
-    ]
-  },
-  { 
-    id: 8, 
-    images: ['/prod_pendant.png', '/prod_linear.png'], 
-    title: 'Minimalist Pendants', 
-    desc: 'Sleek, geometric suspension lights.', 
-    category: 'indoor decorative',
-    products: [
+      { id: 702, name: 'Crystal Cascade', img: ['/prod_pendant.png', '/prod_chandelier.png'], specs: 'Custom Drops / 2700K' },
       { id: 801, name: 'Cylinder Pendant', img: ['/prod_pendant.png', '/prod_chandelier.png'], specs: '8W / 50mm Dia / Matt Black' },
       { id: 802, name: 'Cone Pendant', img: ['/prod_chandelier.png', '/prod_pendant.png'], specs: '12W / Brass Finish' }
     ]
@@ -96,9 +87,9 @@ const cataloguesData = [
   { 
     id: 9, 
     images: ['/prod_facade.png', '/prod_linear.png'], 
-    title: 'Outdoor Sconces', 
+    title: 'Outdoor Decorative', 
     desc: 'Weather-proof, architecturally integrated wall lights.', 
-    category: 'outdoor decorative',
+    category: 'landscape',
     products: [
       { id: 901, name: 'Cube Sconce Up/Down', img: ['/prod_facade.png', '/prod_pendant.png'], specs: '2x6W / IP65 / Dark Grey' },
       { id: 902, name: 'Slim Wall Wash', img: ['/prod_pendant.png', '/prod_facade.png'], specs: '15W / IP65 / Silver' }

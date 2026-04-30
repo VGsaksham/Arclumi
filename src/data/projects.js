@@ -1,0 +1,12 @@
+export const projectsData = [
+  { id: 1, images: ['/proj_commercial.png', '/project_1_1776455844850.png', '/proj_commercial.png', '/project_1_1776455844850.png', '/proj_commercial.png', '/project_1_1776455844850.png'], title: 'dlf, gurugram', category: 'commercial', imageQuality: 'high' },
+  { id: 2, images: ['/proj_hospitality.png', '/project_2_1776455860367.png', '/proj_hospitality.png', '/project_2_1776455860367.png', '/proj_hospitality.png', '/project_2_1776455860367.png'], title: 'aman hotel, new delhi', category: 'hospitality', imageQuality: 'standard' },
+  { id: 3, images: ['/proj_res_1.png', '/hero_bg_1776455815166.png', '/proj_res_1.png', '/hero_bg_1776455815166.png', '/proj_res_1.png', '/hero_bg_1776455815166.png'], title: 'private residence', category: 'residential', imageQuality: 'high' },
+  { id: 4, images: ['/proj_res_2.png', '/proj_res_1.png', '/proj_res_2.png', '/proj_res_1.png', '/proj_res_2.png', '/proj_res_1.png'], title: 'dubai hills, dubai', category: 'residential', imageQuality: 'standard' },
+  { id: 5, images: ['/proj_res_3.png', '/proj_res_2.png', '/proj_res_3.png', '/proj_res_2.png', '/proj_res_3.png', '/proj_res_2.png'], title: 'private farmhouse', category: 'residential', imageQuality: 'standard' },
+  { id: 6, images: ['/proj_monumental.png', '/proj_hospitality.png', '/proj_monumental.png', '/proj_hospitality.png', '/proj_monumental.png', '/proj_hospitality.png'], title: 'gujarat bhawan, new delhi', category: 'light installations', imageQuality: 'standard' },
+  { id: 7, images: ['/proj_monumental_2.png', '/proj_monumental.png', '/proj_monumental_2.png', '/proj_monumental.png', '/proj_monumental_2.png', '/proj_monumental.png'], title: 'the louvre, abu dhabi', category: 'light installations', imageQuality: 'high' },
+  { id: 8, images: ['/proj_hospitality_2.png', '/proj_commercial.png', '/proj_hospitality_2.png', '/proj_commercial.png', '/proj_hospitality_2.png', '/proj_commercial.png'], title: 'marriott resort, goa', category: 'hospitality', imageQuality: 'standard' },
+  { id: 9, images: ['/proj_commercial_2.png', '/proj_commercial.png', '/proj_commercial_2.png', '/proj_commercial.png', '/proj_commercial_2.png', '/proj_commercial.png'], title: 'boutique retail, mumbai', category: 'commercial', imageQuality: 'standard' },
+  { id: 10, images: ['/proj_res_4.png', '/proj_res_3.png', '/proj_res_4.png', '/proj_res_3.png', '/proj_res_4.png', '/proj_res_3.png'], title: 'high-end penthouse, london', category: 'residential', imageQuality: 'standard' }
+];
