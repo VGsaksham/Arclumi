@@ -7,7 +7,7 @@ const categories = ['all', 'residential', 'hospitality', 'commercial', 'light in
 
 const ProjectCard = ({ project }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = project.images || [];
+  const images = (project.images || []).filter(img => img && img.asset);
 
   const handleNextImage = (e) => {
     e.stopPropagation();

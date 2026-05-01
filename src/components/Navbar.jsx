@@ -6,6 +6,7 @@ const productCategories = ['indoor', 'facade', 'landscape', 'speciality products
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,24 +16,38 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isProjectPage = location.pathname.includes('/project/');
+  const useLightText = isProjectPage && !scrolled;
+
   return (
     <nav
-      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      className={`navbar ${scrolled ? 'scrolled' : ''} ${useLightText ? 'navbar-light-theme' : ''}`}
       style={{
-        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px) saturate(100%)',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px) saturate(100%)',
-        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.6)' : 'transparent'
+        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.6)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(15px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(15px)' : 'none',
       }}
     >
       <div className="navbar-logo">
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        {/* State A — independent link, wordmark text */}
+        <Link to="/" className="logo-state-text">
           <div className="logo-text">
             <span className="logo-light">arc</span>
             <span className="logo-book">lumi</span>
           </div>
           <div className="logo-subtext">bespoke architectural lighting</div>
         </Link>
+
+        {/* State B — independent link, PNG monogram */}
+        <Link to="/" className="logo-state-icon-link">
+          <img
+            src="/logo-Photoroom.png"
+            alt="Arclumi"
+            className="logo-state-icon"
+          />
+        </Link>
       </div>
+
       <ul className="navbar-links">
         <li><Link to="/#projects">projects</Link></li>
         <li className="dropdown-container">

@@ -1,8 +1,8 @@
 .project-detail-page {
   padding-top: 150px; /* Account for navbar */
   min-height: 100vh;
-  background-color: #050505;
-  color: #fff;
+  background-color: #fafafa;
+  color: #111;
 }
 
 .project-detail-header {
@@ -15,7 +15,7 @@
   font-size: 0.8rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
 }
 
@@ -56,7 +56,7 @@
   grid-column: span 1;
   grid-row: span 1;
   height: 290px;
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .gallery-item.wide-slot {
@@ -84,7 +84,7 @@
 }
 
 .text-slot {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(0, 0, 0, 0.03);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,9 +93,9 @@
 
 .text-slot .centered-text {
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   text-align: center;
   line-height: 2;
   text-transform: lowercase;

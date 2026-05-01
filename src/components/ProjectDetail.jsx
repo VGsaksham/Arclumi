@@ -35,7 +35,7 @@ const ProjectDetail = () => {
   }
 
   const isHighQuality = project.imageQuality === 'high';
-  const images = project.images || [];
+  const images = (project.images || []).filter(img => img && img.asset);
 
   return (
     <div className={`project-detail-page ${isHighQuality ? 'layout-high' : 'layout-standard'}`}>
@@ -51,17 +51,28 @@ const ProjectDetail = () => {
             let imgIndex = 0;
             let slotIndex = 0;
 
-            while (imgIndex < images.length) {
+            while (true) {
               const pattern = slotIndex % 6;
+              const isFeaturedSlot = (pattern === 0 || pattern === 5);
+              const isTextSlot = isFeaturedSlot && !isHighQuality;
+
+              if (imgIndex >= images.length) {
+                // Out of images. 
+                // Only continue if we need to close the layout with a text block (pattern 5)
+                if (isTextSlot && pattern === 5) {
+                  // Let it render the closing text block
+                } else {
+                  break;
+                }
+              }
+
               let slotClass = 'small-slot';
               if (pattern === 0) slotClass = 'big-slot';
               if (pattern === 3) slotClass = 'wide-slot';
               if (pattern === 4) slotClass = 'tall-slot';
               if (pattern === 5) slotClass = 'big-slot';
 
-              const isFeaturedSlot = slotClass === 'big-slot';
-
-              if (isFeaturedSlot && !isHighQuality) {
+              if (isTextSlot) {
                 // Insert text block for standard quality in big slots
                 elements.push(
                   <div key={`text-${slotIndex}`} className={`gallery-item ${slotClass} text-slot`}>

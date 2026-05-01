@@ -11,5 +11,9 @@ export const client = createClient({
 const builder = imageUrlBuilder(client);
 
 export function urlFor(source) {
+  // Check if source exists and actually has an asset reference
+  if (!source || !source.asset) {
+    return null;
+  }
   return builder.image(source);
 }

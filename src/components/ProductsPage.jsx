@@ -94,8 +94,8 @@ const ProductsPage = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="zoom-box-img-wrapper">
-                {catalogue.images?.[0] ? (
-                  <img src={urlFor(catalogue.images[0]).width(600).url()} alt={catalogue.title} className="zoom-box-img" />
+                {catalogue.images?.filter(img => img && img.asset)?.[0] ? (
+                  <img src={urlFor(catalogue.images.filter(img => img && img.asset)[0]).width(600).url()} alt={catalogue.title} className="zoom-box-img" />
                 ) : (
                   <div className="zoom-box-img placeholder-img"></div>
                 )}
@@ -306,7 +306,7 @@ const ProductsPage = () => {
 
 const ProductCard = ({ product }) => {
   const [currentImg, setCurrentImg] = useState(0);
-  const images = product.images || [];
+  const images = (product.images || []).filter(img => img && img.asset);
 
   const nextImg = (e) => {
     e.stopPropagation();
