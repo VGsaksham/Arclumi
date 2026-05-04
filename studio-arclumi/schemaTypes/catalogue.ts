@@ -35,9 +35,9 @@ export const catalogue = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Indoor', value: 'indoor' },
-          { title: 'Facade', value: 'facade' },
-          { title: 'Landscape', value: 'landscape' },
+          { title: 'Indoor',              value: 'indoor' },
+          { title: 'Facade',              value: 'facade' },
+          { title: 'Landscape',           value: 'landscape' },
           { title: 'Speciality Products', value: 'speciality products' },
         ],
       },
@@ -58,11 +58,45 @@ export const catalogue = defineType({
     defineField({
       name: 'products',
       title: 'Products',
+      description: 'Add products directly here — no need to visit a separate page',
       type: 'array',
       of: [
         defineArrayMember({
-          type: 'reference',
-          to: [{ type: 'product' }],
+          type: 'object',
+          name: 'product',
+          title: 'Product',
+          preview: {
+            select: {
+              title: 'name',
+              media: 'images.0',
+            },
+          },
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Product Name',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'images',
+              title: 'Product Images',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'image',
+                  options: { hotspot: true },
+                }),
+              ],
+              validation: (Rule) => Rule.min(1).error('Add at least one image'),
+            }),
+            defineField({
+              name: 'specs',
+              title: 'Specifications',
+              type: 'string',
+              description: 'e.g., 12W / 3000K / 45° Beam',
+            }),
+          ],
         }),
       ],
     }),

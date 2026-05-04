@@ -6,10 +6,9 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-brand">
           <div className="footer-logo">
-            <span className="logo-light">arc</span>
-            <span className="logo-book">lumi</span>
+            ARCLUMI
           </div>
-          <p>Elevating architectural spaces through the medium of light.</p>
+          <p className="footer-subtext">bespoke architectural lighting</p>
         </div>
         
         <div className="footer-links">
@@ -33,7 +32,6 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} ARCLUMI. ALL RIGHTS RESERVED.</p>
-        <p className="footer-newsletter">SIGN UP FOR NEWSLETTER</p>
       </div>
     </footer>
   );

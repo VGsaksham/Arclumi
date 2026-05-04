@@ -19,6 +19,23 @@ const Navbar = () => {
   const isProjectPage = location.pathname.includes('/project/');
   const useLightText = isProjectPage && !scrolled;
 
+  const isActive = (path, hash = '') => {
+    if (hash) {
+      return location.pathname === path && location.hash === hash;
+    }
+    if (path === '/products') {
+      return location.pathname.startsWith('/products');
+    }
+    return location.pathname === path;
+  };
+
+  const handleLogoClick = (e) => {
+    if (location.pathname === '/' && !location.hash) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav
       className={`navbar ${scrolled ? 'scrolled' : ''} ${useLightText ? 'navbar-light-theme' : ''}`}
@@ -30,16 +47,15 @@ const Navbar = () => {
     >
       <div className="navbar-logo">
         {/* State A — independent link, wordmark text */}
-        <Link to="/" className="logo-state-text">
+        <Link to="/" className="logo-state-text" onClick={handleLogoClick}>
           <div className="logo-text">
-            <span className="logo-light">arc</span>
-            <span className="logo-book">lumi</span>
+            ARCLUMI
           </div>
           <div className="logo-subtext">bespoke architectural lighting</div>
         </Link>
 
         {/* State B — independent link, PNG monogram */}
-        <Link to="/" className="logo-state-icon-link">
+        <Link to="/" className="logo-state-icon-link" onClick={handleLogoClick}>
           <img
             src="/logo-Photoroom.png"
             alt="Arclumi"
@@ -49,9 +65,28 @@ const Navbar = () => {
       </div>
 
       <ul className="navbar-links">
-        <li><Link to="/#projects">projects</Link></li>
+        <li>
+          <Link 
+            to="/#projects"
+            className={isActive('/', '#projects') ? 'active' : ''}
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                const element = document.getElementById('projects');
+                if (element) {
+                  const yOffset = -100;
+                  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                  window.history.pushState(null, '', '/#projects');
+                }
+              }
+            }}
+          >
+            projects
+          </Link>
+        </li>
         <li className="dropdown-container">
-          <span className="dropdown-trigger">products</span>
+          <span className={`dropdown-trigger ${isActive('/products') ? 'active' : ''}`}>products</span>
           <div className="dropdown-menu">
             {productCategories.map(cat => (
               <Link
@@ -65,9 +100,9 @@ const Navbar = () => {
             ))}
           </div>
         </li>
-        <li><Link to="/services">services</Link></li>
-        <li><Link to="/about">about</Link></li>
-        <li><Link to="/contact">contact us</Link></li>
+        <li><Link to="/services" className={isActive('/services') ? 'active' : ''}>services</Link></li>
+        <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>about</Link></li>
+        <li><Link to="/contact" className={isActive('/contact') ? 'active' : ''}>contact us</Link></li>
       </ul>
     </nav>
   );

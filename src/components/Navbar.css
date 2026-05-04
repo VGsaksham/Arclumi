@@ -95,13 +95,7 @@
   white-space: nowrap;
 }
 
-.logo-light,
-.logo-book {
-  color: inherit;
-  font-weight: inherit;
-  -webkit-text-stroke: 0;
-  text-shadow: none;
-}
+/* Removed unused logo classes */
 
 .logo-subtext {
   font-size: 0.5rem;
@@ -136,7 +130,7 @@
     0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-/* ── Dropdown ── */
+/* ── Dropdown (Glassmorphism) ── */
 .dropdown-container {
   position: relative;
   display: flex;
@@ -145,23 +139,32 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 12px);
   left: 0;
-  transform: translateY(10px);
   display: flex;
   flex-direction: column;
-  min-width: 180px;
-  padding: 8px 0;
+  min-width: 130px;
+  padding: 4px 0;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  background: #111;
-  border: none;
-  border-radius: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Ultra Foggy Smoky Glass */
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
+/* Scrolled state uses same compact style with navbar color */
 .navbar.scrolled .dropdown-menu {
-  background: #111;
+  background: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .dropdown-container:hover .dropdown-menu {
@@ -178,34 +181,65 @@
   padding-bottom: 5px;
   cursor: pointer;
   text-transform: lowercase;
+  position: relative;
 }
 
-.dropdown-trigger:hover {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
-    0 0 30px rgba(255, 255, 255, 0.4);
+.dropdown-trigger:hover,
+.dropdown-trigger.active {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Active State Underline */
+.navbar-links a.active::after,
+.dropdown-trigger.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(1);
+  transition: transform 0.3s ease;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .dropdown-item {
-  padding: 8px 15px;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+  padding: 8px 16px;
+  font-size: 0.5rem;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #fff !important;
+  opacity: 0.7;
   white-space: nowrap;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s ease;
   text-align: left;
   display: block;
 }
 
-.dropdown-item:hover {
-  color: #fff !important;
-  background: rgba(255, 255, 255, 0.03);
-  transform: translateX(4px);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+.dropdown-menu:hover .dropdown-item {
+  opacity: 0.3;
 }
 
-.dropdown-item::after {
-  display: none !important;
+.dropdown-menu:hover .dropdown-item:hover {
+  opacity: 1;
 }
 
 /* ── Light Theme (project pages, unscrolled) ── */
@@ -213,6 +247,11 @@
 .navbar-light-theme .navbar-links a,
 .navbar-light-theme .dropdown-trigger {
   color: #111 !important;
+}
+
+.navbar-light-theme .navbar-links a.active::after,
+.navbar-light-theme .dropdown-trigger.active::after {
+  background: #111;
 }
 
 .navbar-light-theme .logo-subtext {
@@ -225,16 +264,26 @@
 }
 
 .navbar-light-theme .dropdown-menu {
-  background: #fafafa;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(10, 10, 10, 0.7); /* Keep it dark glass for white text visibility */
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled.navbar-light-theme .dropdown-menu {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .navbar-light-theme .dropdown-item {
-  color: rgba(0, 0, 0, 0.6) !important;
+  color: #fff !important;
+  opacity: 0.7;
+}
+
+.navbar-light-theme .dropdown-menu:hover .dropdown-item {
+  opacity: 0.3;
 }
 
 .navbar-light-theme .dropdown-item:hover {
-  color: #111 !important;
-  background: rgba(0, 0, 0, 0.03);
+  opacity: 1;
   text-shadow: none;
 }
