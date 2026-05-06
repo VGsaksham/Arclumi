@@ -59,7 +59,7 @@ const Contact = () => {
               <input 
                 type="text" 
                 name="name"
-                placeholder="John Doe" 
+                placeholder="Arjun Sharma" 
                 required 
                 onChange={handleInputChange}
               />
@@ -69,7 +69,7 @@ const Contact = () => {
               <input 
                 type="email" 
                 name="email"
-                placeholder="john@example.com" 
+                placeholder="arjun@example.com" 
                 required 
                 onChange={handleInputChange}
               />
@@ -79,7 +79,7 @@ const Contact = () => {
               <input 
                 type="tel" 
                 name="phone"
-                placeholder="+1 234 567 890" 
+                placeholder="+91 98765 43210" 
                 onChange={handleInputChange}
               />
             </div>
@@ -90,10 +90,11 @@ const Contact = () => {
                 rows="6" 
                 placeholder="Tell us about your project in detail..." 
                 required
+                minLength={100}
                 onChange={handleInputChange}
               ></textarea>
               {error && <p className="form-error">{error}</p>}
-              <p className="form-hint">At least 20 words (~2 lines) recommended.</p>
+              <p className="form-hint">At least 20 words / 100 characters recommended.</p>
             </div>
             <div className="form-group file-group">
               <label>Project Files (Optional)</label>
