@@ -97,3 +97,14 @@
   .about-main-title { font-size: 5rem; letter-spacing: 15px; }
   .about-content { gap: 100px; }
 }
+
+@media (max-width: 768px) {
+  .about-page { padding-top: 100px; }
+  .about-main-title { font-size: 3rem; letter-spacing: 8px; margin-bottom: 15px; }
+  .about-subtitle { font-size: 0.8rem; letter-spacing: 4px; }
+  .about-content { gap: 60px; padding-bottom: 80px; }
+  .about-text-block h2 { font-size: 1.8rem; letter-spacing: 3px; }
+  .about-text-block p { font-size: 0.95rem; line-height: 1.6; }
+  .about-image-block { aspect-ratio: 16 / 9; }
+  .about-text-block.right { text-align: left; }
+}

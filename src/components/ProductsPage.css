@@ -357,26 +357,81 @@
 }
 
 @media (max-width: 768px) {
-  /* On mobile, fallback to vertical layout */
-  .floating-spacer { height: auto !important; }
-  .floating-sticky { position: relative; height: auto; display: block; overflow: visible; }
+  /* Catalogues Grid */
+  .zoom-boxes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .catalogues-section {
+    padding: 60px 20px;
+  }
+  .catalogues-category-title {
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+  }
+  .zoom-box-title {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  .zoom-box-desc {
+    font-size: 0.6rem;
+    opacity: 1; /* Always show description on mobile since hover isn't reliable */
+    transform: translateY(0);
+  }
+
+  /* Showroom horizontal scroll */
+  .floating-spacer { 
+    height: 100vh !important; 
+    overflow: hidden; 
+  }
+  .floating-sticky { 
+    position: relative; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    overflow-y: auto; 
+    padding-bottom: 40px;
+  }
   .floating-tracks-container { 
     padding-top: 100px; 
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
   }
   .floating-track {
-    flex-direction: column;
-    padding: 0 40px 60px 40px;
-    gap: 60px;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 20px 20px 20px;
+    gap: 20px;
     transform: none !important;
     transition: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+  }
+  .floating-track::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
   .floating-panel {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
+    width: 60vw;
+    max-width: 250px;
+    min-width: 140px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
-  .floating-img { max-height: 60vh; }
-  .floating-showroom .browse-topbar { position: sticky; background: rgba(255,255,255,0.95); padding: 20px; }
+  .floating-img { 
+    max-height: 25vh; 
+  }
+  .floating-name {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+  .floating-index {
+    font-size: 0.55rem;
+  }
+  .floating-showroom .browse-topbar { 
+    position: sticky; 
+    background: rgba(255,255,255,0.95); 
+    padding: 20px; 
+    z-index: 50;
+  }
 }

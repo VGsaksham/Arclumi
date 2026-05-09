@@ -173,3 +173,14 @@
   .service-image-wrapper { aspect-ratio: 16 / 9; }
   .service-number { font-size: 8rem; }
 }
+
+@media (max-width: 768px) {
+  .services-page { padding-top: 100px; }
+  .services-main-title { font-size: 3rem; letter-spacing: 8px; margin-bottom: 15px; }
+  .services-subtitle { font-size: 0.8rem; letter-spacing: 4px; }
+  .service-title { font-size: 1.8rem; letter-spacing: 3px; }
+  .service-description { font-size: 0.95rem; line-height: 1.6; }
+  .service-number { font-size: 5rem; top: -30px; left: -10px; }
+  .footer-callout { font-size: 1.5rem; letter-spacing: 4px; }
+  .contact-link { font-size: 0.8rem; padding: 12px 30px; }
+}

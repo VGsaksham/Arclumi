@@ -232,7 +232,27 @@
 
 @media (max-width: 768px) {
   .projects-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 350px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+
+  .projects-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .projects-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+
+  .project-filters {
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .project-filters li {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
   }
 }

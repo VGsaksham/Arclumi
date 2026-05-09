@@ -46,62 +46,25 @@ const ProjectDetail = () => {
 
       <div className="project-detail-content">
         <div className="project-detail-gallery">
-          {(() => {
-            const elements = [];
-            let imgIndex = 0;
-            let slotIndex = 0;
-
-            while (true) {
-              const pattern = slotIndex % 6;
-              const isFeaturedSlot = (pattern === 0 || pattern === 5);
-              const isTextSlot = isFeaturedSlot && !isHighQuality;
-
-              if (imgIndex >= images.length) {
-                // Out of images. 
-                // Only continue if we need to close the layout with a text block (pattern 5)
-                if (isTextSlot && pattern === 5) {
-                  // Let it render the closing text block
-                } else {
-                  break;
-                }
-              }
-
-              let slotClass = 'small-slot';
-              if (pattern === 0) slotClass = 'big-slot';
-              if (pattern === 3) slotClass = 'wide-slot';
-              if (pattern === 4) slotClass = 'tall-slot';
-              if (pattern === 5) slotClass = 'big-slot';
-
-              if (isTextSlot) {
-                // Insert text block for standard quality in big slots
-                elements.push(
-                  <div key={`text-${slotIndex}`} className={`gallery-item ${slotClass} text-slot`}>
-                    <p className="centered-text">
-                      In this space, architectural forms<br/>
-                      interact seamlessly with natural light,<br/>
-                      defining a new spatial narrative.
-                    </p>
-                  </div>
-                );
-              } else {
-                // Insert image
-                const img = images[imgIndex];
-                elements.push(
-                  <div key={`img-${img._key || imgIndex}`} className={`gallery-item ${slotClass}`}>
-                    <img 
-                      src={urlFor(img).width(1200).url()} 
-                      alt={`${project.title} view ${imgIndex + 1}`} 
-                      className="gallery-image" 
-                    />
-                  </div>
-                );
-                imgIndex++; // Only advance image index when an image is placed
-              }
-              slotIndex++;
-            }
-
-            return elements;
-          })()}
+          {!isHighQuality && (
+            <div className="gallery-item text-slot">
+              <p className="centered-text">
+                In this space, architectural forms<br/>
+                interact seamlessly with natural light,<br/>
+                defining a new spatial narrative.
+              </p>
+            </div>
+          )}
+          
+          {images.map((img, index) => (
+            <div key={`img-${img._key || index}`} className="gallery-item">
+              <img 
+                src={urlFor(img).width(1200).url()} 
+                alt={`${project.title} view ${index + 1}`} 
+                className="gallery-image" 
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

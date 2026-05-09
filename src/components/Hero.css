@@ -172,3 +172,30 @@
   right: 40px;
   transform: translateY(-50%) rotate(45deg);
 }
+
+/* ── Responsive Styles ── */
+@media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 0.65rem;
+  }
+
+  .hero-nav-arrow.left {
+    left: 15px;
+  }
+
+  .hero-nav-arrow.right {
+    right: 15px;
+  }
+}
