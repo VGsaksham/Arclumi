@@ -59,7 +59,7 @@ const ProjectDetail = () => {
           {images.map((img, index) => (
             <div key={`img-${img._key || index}`} className="gallery-item">
               <img 
-                src={urlFor(img).width(1200).url()} 
+                src={urlFor(img).width(1200).auto('format').quality(80).url()} 
                 alt={`${project.title} view ${index + 1}`} 
                 className="gallery-image" 
               />

@@ -30,7 +30,7 @@ const ProjectCard = ({ project }) => {
           images.map((img, index) => (
             <img
               key={index}
-              src={urlFor(img).width(800).url()}
+              src={urlFor(img).width(800).auto('format').quality(80).url()}
               alt={project.title}
               className={`project-img ${index === currentImageIndex ? 'active' : ''}`}
             />

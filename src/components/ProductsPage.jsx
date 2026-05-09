@@ -92,7 +92,7 @@ const ProductsPage = () => {
             >
               <div className="zoom-box-img-wrapper">
                 {cat.images?.filter(img => img?.asset)?.[0]
-                  ? <img src={urlFor(cat.images.filter(img => img?.asset)[0]).width(600).url()} alt={cat.title} className="zoom-box-img" />
+                  ? <img src={urlFor(cat.images.filter(img => img?.asset)[0]).width(600).auto('format').quality(80).url()} alt={cat.title} className="zoom-box-img" />
                   : <div className="zoom-box-img placeholder-img" />}
               </div>
               <div className="zoom-box-info">
@@ -175,7 +175,7 @@ const BrowseShowroom = ({ catalogue, onClose }) => {
       <div key={product._key || i} className="floating-panel">
         <div className="floating-img-wrapper">
           {mainImg ? (
-            <img src={urlFor(mainImg).width(400).url()} alt={product.name} className="floating-img" />
+            <img src={urlFor(mainImg).width(400).auto('format').quality(80).url()} alt={product.name} className="floating-img" />
           ) : null}
         </div>
         <div className="floating-meta">
