@@ -255,4 +255,13 @@
     font-size: 0.65rem;
     letter-spacing: 2px;
   }
+
+  .project-hover-content {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .project-card:hover .project-hover-content {
+    letter-spacing: 3px;
+  }
 }

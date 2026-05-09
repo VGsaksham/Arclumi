@@ -374,49 +374,32 @@
     letter-spacing: 1px;
   }
   .zoom-box-desc {
-    font-size: 0.6rem;
-    opacity: 1; /* Always show description on mobile since hover isn't reliable */
-    transform: translateY(0);
+    display: none;
   }
 
-  /* Showroom horizontal scroll */
+  /* Showroom horizontal scroll - Restore sticky behavior */
   .floating-spacer { 
-    height: 100vh !important; 
-    overflow: hidden; 
+    /* removed overrides, rely on base */
   }
   .floating-sticky { 
-    position: relative; 
-    height: 100%; 
-    display: flex; 
-    flex-direction: column; 
-    overflow-y: auto; 
-    padding-bottom: 40px;
+    /* removed overrides, rely on base */
   }
   .floating-tracks-container { 
     padding-top: 100px; 
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
   .floating-track {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 0 20px 20px 20px;
+    /* removed native overflow-x, rely on JS transform */
+    padding: 0 10vw;
     gap: 20px;
-    transform: none !important;
-    transition: none;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Firefox */
-  }
-  .floating-track::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    align-items: center;
   }
   .floating-panel {
-    width: 60vw;
-    max-width: 250px;
-    min-width: 140px;
+    width: 45vw;
+    max-width: 200px;
+    min-width: 120px;
     flex-shrink: 0;
-    scroll-snap-align: start;
   }
   .floating-img { 
     max-height: 25vh; 
@@ -429,9 +412,16 @@
     font-size: 0.55rem;
   }
   .floating-showroom .browse-topbar { 
-    position: sticky; 
+    position: absolute; 
     background: rgba(255,255,255,0.95); 
-    padding: 20px; 
+    padding: 15px 20px; 
     z-index: 50;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .floating-showroom .browse-catalogue-name {
+    font-size: 0.6rem;
+    line-height: 1.4;
   }
 }
