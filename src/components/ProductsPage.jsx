@@ -171,8 +171,10 @@ const BrowseShowroom = ({ catalogue, onClose }) => {
 
   const renderProduct = (product, i) => {
     const mainImg = (product.images || []).filter(img => img?.asset)[0];
+    const { topLeftStat, topRightStat, bottomLeftStat, bottomRightStat } = product;
+    
     return (
-      <div key={product._key || i} className="floating-panel">
+      <div key={product._key || i} className="floating-panel hover-square-container">
         <div className="floating-img-wrapper">
           {mainImg ? (
             <img src={urlFor(mainImg).width(400).auto('format').quality(80).url()} alt={product.name} className="floating-img" />
@@ -182,6 +184,13 @@ const BrowseShowroom = ({ catalogue, onClose }) => {
           <span className="floating-index">{(i + 1).toString().padStart(2, '0')}</span>
           <h3 className="floating-name">{product.name}</h3>
         </div>
+        
+        <div className="hover-borders"></div>
+        
+        {topLeftStat?.label && <div className="hover-stat top-left"><span className="stat-label">{topLeftStat.label}</span><span className="stat-value">{topLeftStat.value}</span></div>}
+        {topRightStat?.label && <div className="hover-stat top-right"><span className="stat-label">{topRightStat.label}</span><span className="stat-value">{topRightStat.value}</span></div>}
+        {bottomLeftStat?.label && <div className="hover-stat bottom-left"><span className="stat-label">{bottomLeftStat.label}</span><span className="stat-value">{bottomLeftStat.value}</span></div>}
+        {bottomRightStat?.label && <div className="hover-stat bottom-right"><span className="stat-label">{bottomRightStat.label}</span><span className="stat-value">{bottomRightStat.value}</span></div>}
       </div>
     );
   };

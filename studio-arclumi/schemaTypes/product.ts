@@ -25,11 +25,42 @@ export const product = defineType({
       ],
       validation: (Rule) => Rule.min(1),
     }),
+
     defineField({
-      name: 'specs',
-      title: 'Specifications',
-      type: 'string',
-      description: 'e.g., 12W / 3000K / 45° Beam',
+      name: 'topLeftStat',
+      title: 'Top-Left Stat',
+      type: 'object',
+      fields: [
+        defineField({ name: 'label', title: 'Label', type: 'string' }),
+        defineField({ name: 'value', title: 'Value', type: 'string' })
+      ]
+    }),
+    defineField({
+      name: 'topRightStat',
+      title: 'Top-Right Stat',
+      type: 'object',
+      fields: [
+        defineField({ name: 'label', title: 'Label', type: 'string' }),
+        defineField({ name: 'value', title: 'Value', type: 'string' })
+      ]
+    }),
+    defineField({
+      name: 'bottomLeftStat',
+      title: 'Bottom-Left Stat',
+      type: 'object',
+      fields: [
+        defineField({ name: 'label', title: 'Label', type: 'string' }),
+        defineField({ name: 'value', title: 'Value', type: 'string' })
+      ]
+    }),
+    defineField({
+      name: 'bottomRightStat',
+      title: 'Bottom-Right Stat',
+      type: 'object',
+      fields: [
+        defineField({ name: 'label', title: 'Label', type: 'string' }),
+        defineField({ name: 'value', title: 'Value', type: 'string' })
+      ]
     }),
   ],
 })
